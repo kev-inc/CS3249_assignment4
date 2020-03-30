@@ -1,31 +1,31 @@
 import { Meteor } from 'meteor/meteor';
-import { LinksCollection } from '/imports/api/links';
+import { TempCollection } from '/imports/api/links';
 
-function insertLink({ title, url }) {
-  LinksCollection.insert({title, url, createdAt: new Date()});
+function insertTemp({ roomId, timestamp, temp }) {
+  TempCollection.insert({roomId: roomId, timestamp: timestamp, temp: temp});
 }
 
 Meteor.startup(() => {
-  // If the Links collection is empty, add some data.
-  if (LinksCollection.find().count() === 0) {
-    insertLink({
-      title: 'Do the Tutorial',
-      url: 'https://www.meteor.com/tutorials/react/creating-an-app'
-    });
 
-    insertLink({
-      title: 'Follow the Guide',
-      url: 'http://guide.meteor.com'
-    });
-
-    insertLink({
-      title: 'Read the Docs',
-      url: 'https://docs.meteor.com'
-    });
-
-    insertLink({
-      title: 'Discussions',
-      url: 'https://forums.meteor.com'
+  if (TempCollection.find().count() === 0) {
+    console.log("Database is empty...")
+    console.log("Updating Database with csv file...")
+    var count = 0
+    Papa.parse(Assets.getText('temps.csv'), {
+      header: true,
+      skipEmptyLines: true,
+      step: function(result) {
+        let r = result.data[0]
+        insertTemp({
+          roomId: parseInt(r.RoomId),
+          timestamp: new Date(r.timestamp),
+          temp: parseFloat(r.temperature)
+        })
+        count++
+      },
+      complete: function(results, file) {
+        console.log(count + ' entries added!')
+      }
     });
   }
 });
