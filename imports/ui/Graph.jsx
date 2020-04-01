@@ -37,19 +37,23 @@ export const Graph = () => {
     })
 
     return(
-        <div>
+        <div style={styles.root} >
+            <div id="graphLabels" style={styles.graphLabels} align="right"></div>
             <div id='graphRef' style={styles.graphRef}></div>
-            <div id="graphLabels" style={styles.graphLabels}></div>
         </div>
     )
 }
 
 const styles = {
+    root: {
+        display: 'flex'
+    },
     graphRef: {
-        width: '100%'
+        width: '80%',
+        height: 200
     },
     graphLabels: {
-        display: 'inline-block'
+        width: '20%'
     }
 }
 
