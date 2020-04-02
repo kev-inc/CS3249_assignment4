@@ -1,38 +1,97 @@
 import React, { useEffect } from 'react'
+import { makeStyles } from '@material-ui/core/styles';
 import Dygraph from 'dygraphs'
 import { useTracker } from 'meteor/react-meteor-data';
 import { TempCollection } from '../api/links';
 
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid'
+import orange from '@material-ui/core/colors/orange'
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+      
+    },
+    appbar: {
+        backgroundColor: orange[700],
+        color: 'black'
+    },
+    card: {
+        backgroundColor: 'white',
+        padding: 12
+    },
+    title: {
+      flexGrow: 1,
+    },
+    graphRef: {
+        height: 200
+    },
+    graphLabels: {
+        display: 'inline-block'
+    }
+  }));
+
 export const Graph = () => {
+    const classes = useStyles()
     const temps = useTracker(() => {
-        return TempCollection.find({}, {limit: 100}).map(temp => {
-            return [temp.timestamp, temp.roomId, temp.temp]
+        return TempCollection.find({}, { limit: 100 }).map(temp => {
+            return [
+                temp.timestamp,
+                temp['0'],
+                temp['1'],
+                temp['2'],
+                temp['3'],
+                temp['4'],
+                temp['5'],
+                temp['6']
+            ]
         })
     })
 
     useEffect(() => {
-        console.log(temps)
         new Dygraph(document.getElementById('graphRef'), temps, {
-            labels:["Date", "Room ID", "Temp"],
+            labels: ["Timestamp", "Room 0", "Room 1", "Room 2", "Room 3", "Room 4", "Room 5", "Room 6"],
             hideOverlayOnMouseOut: false,
             labelsDiv: document.getElementById('graphLabels'),
-            legend: 'always'
+            labelsSeparateLines: true,
+            legend: 'always',
+            axes: {
+                y: {
+                    valueFormatter: (num) => num.toPrecision(3) + "°C",
+                    axisLabelFormatter: (num) => num.toPrecision(2) + "°C",
+                }
+            }
         })
-        // console.log(temps)
-        // const fs = require('fs')
-        // const file = fs.createReadStream('../temps.csv')
-        
-        // [[new Date("2016/01/01"),10,20],
-        // [new Date("2016/07/01"),20,10],
-        // [new Date("2016/12/31"),40,30]]
+
     })
 
-    return(
-        <div>
-            <div id='graphRef'></div>
-            <div id="graphLabels"></div>
+    return (
+        <div className={classes.root}>
+            <AppBar position="static" className={classes.appbar}>
+                <Toolbar>
+                    <Typography variant="h6" className={classes.title}>
+                        Temperature
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+
+            <div className={classes.card} >
+                <Grid container>
+                    <Grid item xs={2}>
+                        <div id="graphLabels" align="right"></div>
+                    </Grid>
+                    <Grid item xs={10}>
+                        <div id='graphRef' className={classes.graphRef}></div>
+                    </Grid>
+                </Grid>
+            </div>
         </div>
+
     )
 }
+
 
 export default Graph
