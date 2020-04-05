@@ -8,20 +8,14 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid'
+import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
 import orange from '@material-ui/core/colors/orange'
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-
-  },
   appbar: {
     backgroundColor: orange[700],
     color: 'black'
-  },
-  card: {
-    backgroundColor: 'white',
-    padding: 12
   },
   title: {
     flexGrow: 1,
@@ -56,27 +50,26 @@ export const Graph = (props) => {
   })
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static" className={classes.appbar}>
-        <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            Temperature
+    <Box>
+      <Paper>
+        <AppBar position="static" className={classes.appbar}>
+          <Toolbar>
+            <Typography variant="h6" className={classes.title}>
+              Temperature
                     </Typography>
-        </Toolbar>
-      </AppBar>
+          </Toolbar>
+        </AppBar>
 
-      <div className={classes.card} >
         <Grid container>
-          <Grid item xs={2}>
+          <Grid item xs={12} sm={2}>
             <div id="graphLabels" align="right"></div>
           </Grid>
-          <Grid item xs={10}>
+          <Grid item xs={12} sm={10}>
             <div id='graphRef' className={classes.graphRef}></div>
           </Grid>
         </Grid>
-      </div>
-    </div>
-
+      </Paper>
+    </Box>
   )
 }
 

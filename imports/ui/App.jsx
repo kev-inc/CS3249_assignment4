@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
-import Graph from './Graph.jsx';
-import { DateInput } from './DateInput';
+import Graph from './Graph';
+import GraphConfig from './GraphConfig'
 import { FloorplanSVG } from './FloorplanSVG';
-import { SampleSlider } from './SampleSlider';
 
 export const App = () => {
   
@@ -11,13 +10,12 @@ export const App = () => {
 
   return (
     <div>
-      <DateInput 
+      <GraphConfig
         startDate={startDate}
         setStartDate={setStartDate}
         endDate={endDate}
         setEndDate={setEndDate}
       />
-      <SampleSlider />
       <Graph 
         startDate={startDate}
         endDate={endDate}
