@@ -3,7 +3,7 @@ import React from 'react';
 export const FloorplanSVG = () => {
 
   return (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 519.08 397.83">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 519.08 397.83" style={{width:700}}>
         <title>FloorplanSVG</title>
         <g id="RoomTemp">
           <rect x="10.67" y="261" width="80.54" height="130" style={{ fill: "#00aeef" }} />

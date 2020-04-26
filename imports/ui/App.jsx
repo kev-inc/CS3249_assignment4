@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Graph from './Graph';
 import GraphConfig from './GraphConfig'
 import { FloorplanSVG } from './FloorplanSVG';
@@ -24,4 +24,3 @@ export const App = () => {
     </div>
   )
 }
-
