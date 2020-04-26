@@ -1,43 +1,34 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import Slider from '@material-ui/core/Slider';
 
-export const SampleSlider = () => {
-  const [value, setValue] = React.useState(30);
+export const SampleSlider = (props) => {
+  // const [value, setValue] = React.useState(30);
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    setSampleRate(newValue);
   };
 
+  const { sampleRate, setSampleRate } = props
+
   return (
-    <div>
-      {/* <span>
-        <Slider
-          defaultValue={30}
-          value={value}
-          // getAriaValueText={valuetext}
-          aria-labelledby="discrete-slider"
-          valueLabelDisplay="auto"
-          onChange={handleChange}
-          step={1}
-          marks
-          min={10}
-          max={110}
-          style = {{width: '300px'}}
-        />
-        {value + ' Samples'}
-      </span> */}
+    <Box justifyContent="center" display="inline">
       <Slider
-        value={value}
+        value={sampleRate}
         onChange={handleChange}
         aria-labelledby="continuous-slider"
         valueLabelDisplay="auto"
-        min={10}
-        max={110}
+        min={1}
+        max={10}
+        marks
+        step={1}
         style = {{width: '300px'}}
       />
-      {value + ' Samples'}
-    </div>
+      <Typography display="inline">
+        2^{sampleRate} = {Math.pow(2, sampleRate)} Samples
+      </Typography>
+    </Box>
   );
 };

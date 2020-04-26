@@ -1,10 +1,17 @@
 import { Mongo } from 'meteor/mongo';
+import moment from 'moment';
 
 export const LinksCollection = new Mongo.Collection('links');
 
 export const TempCollection = new Mongo.Collection('temps');
 
 export function getGraphData(startDate, endDate) {
+  if(startDate instanceof moment) {
+    startDate = startDate.toDate()
+  }
+  if(endDate instanceof moment) {
+    endDate = endDate.toDate()
+  }
   return TempCollection.find({ timestamp: { $gte: startDate, $lte: endDate}}).map(temp => {
     return [
       temp.timestamp,
