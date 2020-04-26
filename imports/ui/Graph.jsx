@@ -30,7 +30,15 @@ const useStyles = makeStyles((theme) => ({
 
 export const Graph = (props) => {
   const classes = useStyles()
-  const temps = useTracker(() => getGraphData(props.startDate, props.endDate))
+  const temps = useTracker(() => {
+    const data = getGraphData(props.startDate, props.endDate)
+    const nth = Math.ceil(data.length / Math.pow(2, props.sampleRate))
+    let filtered = []
+    for(var i = 0; i < data.length; i += nth) {
+      filtered.push(data[i])
+    }
+    return filtered
+  })
 
   useEffect(() => {
     new Dygraph(document.getElementById('graphRef'), temps, {
@@ -44,9 +52,12 @@ export const Graph = (props) => {
           valueFormatter: (num) => num.toPrecision(3) + "°C",
           axisLabelFormatter: (num) => num.toPrecision(2) + "°C",
         }
+      },
+      zoomCallback: (minX, maxX, yRanges) => {
+        props.setStartDate(new Date(minX))
+        props.setEndDate(new Date(maxX))
       }
     })
-
   })
 
   return (
