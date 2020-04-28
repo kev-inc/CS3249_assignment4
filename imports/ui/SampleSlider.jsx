@@ -14,7 +14,7 @@ export const SampleSlider = (props) => {
   const { sampleRate, setSampleRate } = props
 
   return (
-    <Box justifyContent="center" display="inline">
+    <Box display="flex" height="100%" alignItems='center'>
       <Slider
         value={sampleRate}
         onChange={handleChange}
@@ -26,7 +26,7 @@ export const SampleSlider = (props) => {
         step={1}
         style = {{width: '300px'}}
       />
-      <Typography display="inline">
+      <Typography display="inline" style={{marginLeft:24}}>
         2^{sampleRate} = {Math.pow(2, sampleRate)} Samples
       </Typography>
     </Box>

@@ -3,6 +3,8 @@ import Graph from './Graph';
 import GraphConfig from './GraphConfig'
 import { FloorplanSVG } from './FloorplanSVG';
 
+import Box from '@material-ui/core/Box';
+
 export const App = () => {
   
   const [startDate, setStartDate] = useState(new Date("10/02/2013"));
@@ -10,7 +12,7 @@ export const App = () => {
   const [sampleRate, setSampleRate] = useState(7)
 
   return (
-    <div>
+    <Box display="flex" flexDirection="column" alignItems="center">
       <GraphConfig
         startDate={startDate}
         setStartDate={setStartDate}
@@ -27,6 +29,6 @@ export const App = () => {
         sampleRate={sampleRate}
       />
       <FloorplanSVG />
-    </div>
+    </Box>
   )
 }

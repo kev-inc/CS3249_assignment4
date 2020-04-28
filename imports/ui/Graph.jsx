@@ -61,7 +61,7 @@ export const Graph = (props) => {
   })
 
   return (
-    <Box>
+    <Box width="100%" mb={2}>
       <Paper>
         <AppBar position="static" className={classes.appbar}>
           <Toolbar>
@@ -70,15 +70,19 @@ export const Graph = (props) => {
                     </Typography>
           </Toolbar>
         </AppBar>
-
+        
+        <Box m={2}>
         <Grid container>
-          <Grid item xs={12} sm={2}>
-            <div id="graphLabels" align="right"></div>
+          <Grid item sm={12} md={2}>
+            <div id="graphLabels" align="left"></div>
           </Grid>
-          <Grid item xs={12} sm={10}>
+          <Grid item sm={12} md={10}>
             <div id='graphRef' className={classes.graphRef}></div>
           </Grid>
         </Grid>
+        </Box>
+
+        
       </Paper>
     </Box>
   )
