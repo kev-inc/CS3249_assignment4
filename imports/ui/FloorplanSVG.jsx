@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { TempCollection, getAverage, getGraphData } from '../api/links';
 
 const grey = '#9fa2a3';
 var initc0 = '#00aeef';
@@ -9,7 +10,7 @@ var initc4 = '#00aeef';
 var initc5 = '#00aeef';
 var initc6 = '#00aeef';
 
-export const FloorplanSVG = () => {
+export const FloorplanSVG = (props) => {
   const [c0, setc0] = useState(initc0);
   const [c1, setc1] = useState(initc1);
   const [c2, setc2] = useState(initc2);
@@ -18,62 +19,197 @@ export const FloorplanSVG = () => {
   const [c5, setc5] = useState(initc5);
   const [c6, setc6] = useState(initc6);
 
+  // const avgTemp = getAverage(props.startDate, props.endDate);
+
   const handleChange = (room) => {
     if (room == 0) {
       if (c0 == grey) {
         setc0(initc0);
+        props.setRoomIsHidden(state => {
+          return state.map((item, index) => {
+            if (index === 0) {
+              return false;
+            } else {
+              return item;
+            }
+          });  
+        });
       }
       else {
         setc0(grey);
+        props.setRoomIsHidden(state => {
+          return state.map((item, index) => {
+            if (index === 0) {
+              return true;
+            } else {
+              return item;
+            }
+          });  
+        });
       }
+      // console.log(avgTemp);
     }
     else if (room == 1) {
       if (c1 == grey) {
         setc1(initc1);
+        props.setRoomIsHidden(state => {
+          return state.map((item, index) => {
+            if (index === 1) {
+              return false;
+            } else {
+              return item;
+            }
+          });  
+        });
       }
       else {
         setc1(grey);
+        props.setRoomIsHidden(state => {
+          return state.map((item, index) => {
+            if (index === 1) {
+              return true;
+            } else {
+              return item;
+            }
+          });
+        });
       }
+      // console.log(avgTemp[1]);
     }
     else if (room == 2) {
       if (c2 == grey) {
         setc2(initc2);
+        props.setRoomIsHidden(state => {
+          return state.map((item, index) => {
+            if (index === 2) {
+              return false;
+            } else {
+              return item;
+            }
+          });  
+        });
       }
       else {
         setc2(grey);
+        props.setRoomIsHidden(state => {
+          return state.map((item, index) => {
+            if (index === 2) {
+              return true;
+            } else {
+              return item;
+            }
+          });  
+        });
       }
+      // console.log(avgTemp[2]);
     }
     else if (room == 3) {
       if (c3 == grey) {
         setc3(initc3);
+        props.setRoomIsHidden(state => {
+          return state.map((item, index) => {
+            if (index === 3) {
+              return false;
+            } else {
+              return item;
+            }
+          });  
+        });
       }
       else {
         setc3(grey);
+        props.setRoomIsHidden(state => {
+          return state.map((item, index) => {
+            if (index === 3) {
+              return true;
+            } else {
+              return item;
+            }
+          });  
+        });
       }
+      // console.log(avgTemp[3]);
     }
     else if (room == 4) {
       if (c4 == grey) {
         setc4(initc4);
+        props.setRoomIsHidden(state => {
+          return state.map((item, index) => {
+            if (index === 4) {
+              return false;
+            } else {
+              return item;
+            }
+          });  
+        });
       }
       else {
         setc4(grey);
+        props.setRoomIsHidden(state => {
+          return state.map((item, index) => {
+            if (index === 4) {
+              return true;
+            } else {
+              return item;
+            }
+          });  
+        });
       }
+      // console.log(avgTemp[4]);
     }
     else if (room == 5) {
       if (c5 == grey) {
         setc5(initc5);
+        props.setRoomIsHidden(state => {
+          return state.map((item, index) => {
+            if (index === 5) {
+              return false;
+            } else {
+              return item;
+            }
+          });  
+        });
       }
       else {
         setc5(grey);
+        props.setRoomIsHidden(state => {
+          return state.map((item, index) => {
+            if (index === 5) {
+              return true;
+            } else {
+              return item;
+            }
+          });  
+        });
       }
+      // console.log(avgTemp[5]);
     }
     else if (room == 6) {
       if (c6 == grey) {
         setc6(initc6);
+        props.setRoomIsHidden(state => {
+          return state.map((item, index) => {
+            if (index === 6) {
+              return false;
+            } else {
+              return item;
+            }
+          });  
+        });
       }
       else {
         setc6(grey);
+        props.setRoomIsHidden(state => {
+          return state.map((item, index) => {
+            if (index === 6) {
+              return true;
+            } else {
+              return item;
+            }
+          });  
+        });
       }
+      // console.log(avgTemp[6]);
     }
     else {
       console.log("error, room number entered not found")
@@ -84,13 +220,13 @@ export const FloorplanSVG = () => {
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 519.08 397.83" style={{ width: 700 }}>
       <title>FloorplanSVG</title>
       <g id="RoomTemp">
-        <rect x="10.08" y="16" width="196.48" height="142" style={{ fill: c0 }} onClick={(e)=> handleChange(0)} />
-        <rect x="10.67" y="261" width="80.54" height="130" style={{ fill: c1 }} onClick={(e)=> handleChange(1)} />
-        <rect x="96" y="261" width="82.67" height="130" style={{ fill: c2 }} onClick={(e)=> handleChange(2)} />
-        <rect x="184" y="261" width="81.67" height="130" style={{ fill: c3 }} onClick={(e)=> handleChange(3)} />
-        <rect x="271.33" y="261" width="81.67" height="130" style={{ fill: c4 }} onClick={(e)=> handleChange(4)} />
-        <rect x="357.79" y="261.33" width="80.8" height="130" style={{ fill: c5 }} onClick={(e)=> handleChange(5)} />
-        <rect x="441.47" y="261" width="77.62" height="130" style={{ fill: c6 }} onClick={(e)=> handleChange(6)} />
+        <rect x="10.08" y="16" width="196.48" height="142" style={{ fill: c0 }} onClick={(e) => handleChange(0)} />
+        <rect x="10.67" y="261" width="80.54" height="130" style={{ fill: c1 }} onClick={(e) => handleChange(1)} />
+        <rect x="96" y="261" width="82.67" height="130" style={{ fill: c2 }} onClick={(e) => handleChange(2)} />
+        <rect x="184" y="261" width="81.67" height="130" style={{ fill: c3 }} onClick={(e) => handleChange(3)} />
+        <rect x="271.33" y="261" width="81.67" height="130" style={{ fill: c4 }} onClick={(e) => handleChange(4)} />
+        <rect x="357.79" y="261.33" width="80.8" height="130" style={{ fill: c5 }} onClick={(e) => handleChange(5)} />
+        <rect x="441.47" y="261" width="77.62" height="130" style={{ fill: c6 }} onClick={(e) => handleChange(6)} />
       </g>
       <g id="Floorplan">
         <polyline points="0 3 220 3 220 73.67 518 73.67" style={{ fill: "none", stroke: "#231f20", strokeMiterlimit: "10", strokeWidth: "6" }} />

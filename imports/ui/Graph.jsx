@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const Graph = (props) => {
+  console.log(props.roomIsHidden[1]);//usage of roomIsHidden - DELETE AFTER READ
   const classes = useStyles()
   const temps = useTracker(() => {
     const data = getGraphData(props.startDate, props.endDate)

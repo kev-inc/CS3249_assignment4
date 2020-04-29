@@ -4,10 +4,11 @@ import GraphConfig from './GraphConfig'
 import { FloorplanSVG } from './FloorplanSVG';
 
 export const App = () => {
-  
+
   const [startDate, setStartDate] = useState(new Date("10/02/2013"));
   const [endDate, setEndDate] = useState(new Date("10/04/2013"));
-  const [sampleRate, setSampleRate] = useState(7)
+  const [sampleRate, setSampleRate] = useState(7);
+  const [roomIsHidden, setRoomIsHidden] = useState([false,false,false,false,false,false,false]);
 
   return (
     <div>
@@ -19,14 +20,20 @@ export const App = () => {
         sampleRate={sampleRate}
         setSampleRate={setSampleRate}
       />
-      <Graph 
+      <Graph
         startDate={startDate}
         setStartDate={setStartDate}
         endDate={endDate}
         setEndDate={setEndDate}
         sampleRate={sampleRate}
+        roomIsHidden={roomIsHidden}
       />
-      <FloorplanSVG />
+      <FloorplanSVG
+        startDate={startDate}
+        endDate={endDate}
+        roomIsHidden={roomIsHidden}
+        setRoomIsHidden={setRoomIsHidden}
+      />
     </div>
   )
 }
