@@ -15,7 +15,6 @@ export const MaterialDateInput = (props) => {
         onChange={setStartDate}
         maxDate={endDate}
       />
-      {' '}
        <DateTimePicker
         label="End"
         inputVariant="outlined"

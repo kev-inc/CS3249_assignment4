@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Dygraph from 'dygraphs'
 import { useTracker } from 'meteor/react-meteor-data';
@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const Graph = (props) => {
+  const [isZoom, setIsZoom] = useState(false);
   console.log(props.roomIsHidden[1]);//usage of roomIsHidden - DELETE AFTER READ
   const classes = useStyles()
   const temps = useTracker(() => {
@@ -54,15 +55,46 @@ export const Graph = (props) => {
           axisLabelFormatter: (num) => num.toPrecision(2) + "°C",
         }
       },
-      zoomCallback: (minX, maxX, yRanges) => {
-        props.setStartDate(new Date(minX))
-        props.setEndDate(new Date(maxX))
+      interactionModel: {
+        dblclick : (event, g, context) => {
+          console.log('clicked')
+        },
+        mousedown : (event, g, context) => {
+          context.initializeMouseDown(event, g, context)
+          if(event.button == 1) {
+            event.preventDefault()
+            Dygraph.startZoom(event, g, context)
+          } else {
+            Dygraph.startPan(event, g, context)
+          }
+        },
+        mousemove : (event, g, context) => {
+          if(context.isPanning) {
+            Dygraph.movePan(event, g, context)
+          } else if(context.isZooming) {
+            Dygraph.moveZoom(event, g, context)
+          }
+        },
+        mouseup : (event, g, context) => {
+          if(context.isPanning) {
+            Dygraph.endPan(event, g, context)
+          } else if(context.isZooming) {
+            Dygraph.endZoom(event, g, context)
+          }
+          let axes = g.xAxisRange()
+          let startMin = new Date('2013-10-02T05:00:00')
+          let endMax = new Date('2013-12-03T15:15:00')
+          let startNew = new Date(axes[0])
+          let endNew = new Date(axes[1])
+          startMin < startNew ? props.setStartDate(startNew) : props.setStartDate(startMin)
+          endMax > endNew ? props.setEndDate(endNew) : props.setEndDate(endMax)
+        }
       }
     })
   })
 
   return (
-    <Box>
+    <Box width="100%" mb={2}>
       <Paper>
         <AppBar position="static" className={classes.appbar}>
           <Toolbar>
@@ -71,15 +103,17 @@ export const Graph = (props) => {
                     </Typography>
           </Toolbar>
         </AppBar>
-
+        
+        <Box m={2}>
         <Grid container>
-          <Grid item xs={12} sm={2}>
-            <div id="graphLabels" align="right"></div>
+          <Grid item sm={12} md={2}>
+            <div id="graphLabels" align="left"></div>
           </Grid>
-          <Grid item xs={12} sm={10}>
+          <Grid item sm={12} md={10}>
             <div id='graphRef' className={classes.graphRef}></div>
           </Grid>
         </Grid>
+        </Box>
       </Paper>
     </Box>
   )
