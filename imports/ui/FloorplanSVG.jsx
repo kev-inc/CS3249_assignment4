@@ -31,37 +31,37 @@ export const FloorplanSVG = (props) => {
 
   //update the room colour when startDate and endDate changes
   useEffect(() => {
-    if (!props.roomIsHidden[0])
+    if (props.roomIsVisible[0])
       setc0(initc[0]);
     else
       setc0(grey);
 
-    if (!props.roomIsHidden[1])
+    if (props.roomIsVisible[1])
       setc1(initc[1]);
     else
       setc1(grey);
 
-    if (!props.roomIsHidden[2])
+    if (props.roomIsVisible[2])
       setc2(initc[2]);
     else
       setc2(grey);
 
-    if (!props.roomIsHidden[3])
+    if (props.roomIsVisible[3])
       setc3(initc[3]);
     else
       setc3(grey);
 
-    if (!props.roomIsHidden[4])
+    if (props.roomIsVisible[4])
       setc4(initc[4]);
     else
       setc4(grey);
 
-    if (!props.roomIsHidden[5])
+    if (props.roomIsVisible[5])
       setc5(initc[5]);
     else
       setc5(grey);
 
-    if (!props.roomIsHidden[6])
+    if (props.roomIsVisible[6])
       setc6(initc[6]);
     else
       setc6(grey);
@@ -71,10 +71,10 @@ export const FloorplanSVG = (props) => {
     if (room == 0) {
       if (c0 == grey) {
         setc0(initc[0]);
-        props.setRoomIsHidden(state => {
+        props.setRoomIsVisible(state => {
           return state.map((item, index) => {
             if (index === 0) {
-              return false;
+              return true;
             } else {
               return item;
             }
@@ -83,10 +83,10 @@ export const FloorplanSVG = (props) => {
       }
       else {
         setc0(grey);
-        props.setRoomIsHidden(state => {
+        props.setRoomIsVisible(state => {
           return state.map((item, index) => {
             if (index === 0) {
-              return true;
+              return false;
             } else {
               return item;
             }
@@ -97,10 +97,10 @@ export const FloorplanSVG = (props) => {
     else if (room == 1) {
       if (c1 == grey) {
         setc1(initc[1]);
-        props.setRoomIsHidden(state => {
+        props.setRoomIsVisible(state => {
           return state.map((item, index) => {
             if (index === 1) {
-              return false;
+              return true;
             } else {
               return item;
             }
@@ -109,10 +109,10 @@ export const FloorplanSVG = (props) => {
       }
       else {
         setc1(grey);
-        props.setRoomIsHidden(state => {
+        props.setRoomIsVisible(state => {
           return state.map((item, index) => {
             if (index === 1) {
-              return true;
+              return false;
             } else {
               return item;
             }
@@ -123,10 +123,10 @@ export const FloorplanSVG = (props) => {
     else if (room == 2) {
       if (c2 == grey) {
         setc2(initc[2]);
-        props.setRoomIsHidden(state => {
+        props.setRoomIsVisible(state => {
           return state.map((item, index) => {
             if (index === 2) {
-              return false;
+              return true;
             } else {
               return item;
             }
@@ -135,10 +135,10 @@ export const FloorplanSVG = (props) => {
       }
       else {
         setc2(grey);
-        props.setRoomIsHidden(state => {
+        props.setRoomIsVisible(state => {
           return state.map((item, index) => {
             if (index === 2) {
-              return true;
+              return false;
             } else {
               return item;
             }
@@ -149,10 +149,10 @@ export const FloorplanSVG = (props) => {
     else if (room == 3) {
       if (c3 == grey) {
         setc3(initc[3]);
-        props.setRoomIsHidden(state => {
+        props.setRoomIsVisible(state => {
           return state.map((item, index) => {
             if (index === 3) {
-              return false;
+              return true;
             } else {
               return item;
             }
@@ -161,10 +161,10 @@ export const FloorplanSVG = (props) => {
       }
       else {
         setc3(grey);
-        props.setRoomIsHidden(state => {
+        props.setRoomIsVisible(state => {
           return state.map((item, index) => {
             if (index === 3) {
-              return true;
+              return false;
             } else {
               return item;
             }
@@ -175,10 +175,10 @@ export const FloorplanSVG = (props) => {
     else if (room == 4) {
       if (c4 == grey) {
         setc4(initc[4]);
-        props.setRoomIsHidden(state => {
+        props.setRoomIsVisible(state => {
           return state.map((item, index) => {
             if (index === 4) {
-              return false;
+              return true;
             } else {
               return item;
             }
@@ -187,10 +187,10 @@ export const FloorplanSVG = (props) => {
       }
       else {
         setc4(grey);
-        props.setRoomIsHidden(state => {
+        props.setRoomIsVisible(state => {
           return state.map((item, index) => {
             if (index === 4) {
-              return true;
+              return false;
             } else {
               return item;
             }
@@ -201,10 +201,10 @@ export const FloorplanSVG = (props) => {
     else if (room == 5) {
       if (c5 == grey) {
         setc5(initc[5]);
-        props.setRoomIsHidden(state => {
+        props.setRoomIsVisible(state => {
           return state.map((item, index) => {
             if (index === 5) {
-              return false;
+              return true;
             } else {
               return item;
             }
@@ -213,10 +213,10 @@ export const FloorplanSVG = (props) => {
       }
       else {
         setc5(grey);
-        props.setRoomIsHidden(state => {
+        props.setRoomIsVisible(state => {
           return state.map((item, index) => {
             if (index === 5) {
-              return true;
+              return false;
             } else {
               return item;
             }
@@ -227,10 +227,10 @@ export const FloorplanSVG = (props) => {
     else if (room == 6) {
       if (c6 == grey) {
         setc6(initc[6]);
-        props.setRoomIsHidden(state => {
+        props.setRoomIsVisible(state => {
           return state.map((item, index) => {
             if (index === 6) {
-              return false;
+              return true;
             } else {
               return item;
             }
@@ -239,10 +239,10 @@ export const FloorplanSVG = (props) => {
       }
       else {
         setc6(grey);
-        props.setRoomIsHidden(state => {
+        props.setRoomIsVisible(state => {
           return state.map((item, index) => {
             if (index === 6) {
-              return true;
+              return false;
             } else {
               return item;
             }
@@ -256,7 +256,7 @@ export const FloorplanSVG = (props) => {
   };
 
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 519.08 397.83" style={{ width: 700 }}>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 519.08 397.83" style={{ width: '50%' }}>
       <title>FloorplanSVG</title>
       <g id="RoomTemp">
         <rect x="10.08" y="16" width="196.48" height="142" style={{ fill: c0 }} onClick={(e) => handleChange(0)} />

@@ -10,7 +10,7 @@ export const App = () => {
   const [startDate, setStartDate] = useState(new Date("10/02/2013"));
   const [endDate, setEndDate] = useState(new Date("10/04/2013"));
   const [sampleRate, setSampleRate] = useState(7);
-  const [roomIsHidden, setRoomIsHidden] = useState([false,false,false,false,false,false,false]);
+  const [roomIsVisible, setRoomIsVisible] = useState([true,true,true,true,true,true,true]);
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
@@ -28,13 +28,13 @@ export const App = () => {
         endDate={endDate}
         setEndDate={setEndDate}
         sampleRate={sampleRate}
-        roomIsHidden={roomIsHidden}
+        roomIsVisible={roomIsVisible}
       />
       <Floorplan
         startDate={startDate}
         endDate={endDate}
-        roomIsHidden={roomIsHidden}
-        setRoomIsHidden={setRoomIsHidden}
+        roomIsVisible={roomIsVisible}
+        setRoomIsVisible={setRoomIsVisible}
       />
     </Box>
   )
