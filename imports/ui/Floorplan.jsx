@@ -12,12 +12,14 @@ const Floorplan = (props) => (
       <Appbar title="Floorplan" />
       <Grid conatiner>
         <Grid item>
-          <FloorplanSVG
-            startDate={props.startDate}
-            endDate={props.endDate}
-            roomIsHidden={props.roomIsHidden}
-            setRoomIsHidden={props.setRoomIsHidden}
-          />
+          <Box display="flex" justifyContent="center">
+            <FloorplanSVG
+              startDate={props.startDate}
+              endDate={props.endDate}
+              roomIsVisible={props.roomIsVisible}
+              setRoomIsVisible={props.setRoomIsVisible}
+            />
+          </Box>
         </Grid>
       </Grid>
     </Paper>

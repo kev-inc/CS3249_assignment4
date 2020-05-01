@@ -5,8 +5,6 @@ import Box from '@material-ui/core/Box';
 import Slider from '@material-ui/core/Slider';
 
 export const SampleSlider = (props) => {
-  // const [value, setValue] = React.useState(30);
-
   const handleChange = (event, newValue) => {
     setSampleRate(newValue);
   };

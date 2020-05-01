@@ -47,7 +47,7 @@ export const Graph = (props) => {
           axisLabelFormatter: (num) => num.toPrecision(2) + "°C",
         }
       },
-      visibility: props.roomIsHidden,
+      visibility: props.roomIsVisible,
       interactionModel: {
         dblclick : (event, g, context) => {
           console.log('clicked')
