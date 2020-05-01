@@ -30,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
 
 export const Graph = (props) => {
   const [isZoom, setIsZoom] = useState(false);
-  console.log(props.roomIsHidden[1]);//usage of roomIsHidden - DELETE AFTER READ
   const classes = useStyles()
   const temps = useTracker(() => {
     const data = getGraphData(props.startDate, props.endDate)
@@ -41,7 +40,6 @@ export const Graph = (props) => {
     }
     return filtered
   })
-  console.log(getAverage(props.startDate, props.endDate))
 
   useEffect(() => {
     new Dygraph(document.getElementById('graphRef'), temps, {

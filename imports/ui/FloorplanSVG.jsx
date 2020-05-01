@@ -1,30 +1,76 @@
-import React, { useState } from 'react';
-import { TempCollection, getAverage, getGraphData } from '../api/links';
+import React, { useState, useEffect } from 'react';
+import { getAverage } from '../api/links';
 
 const grey = '#9fa2a3';
-var initc0 = '#00aeef';
-var initc1 = '#00aeef';
-var initc2 = '#00aeef';
-var initc3 = '#00aeef';
-var initc4 = '#00aeef';
-var initc5 = '#00aeef';
-var initc6 = '#00aeef';
+
+const calAvgColor = (tempAvgArr) => {
+  const oldRange = Math.max(...tempAvgArr) - Math.min(...tempAvgArr)
+  const newRange = 90 - 20;
+  var initAvgColor = [0, 0, 0, 0, 0, 0, 0]
+
+  for (i = 0; i < tempAvgArr.length; i++) {
+    initAvgColor[i] = Math.round((((tempAvgArr[i] - Math.min(...tempAvgArr)) * newRange) / oldRange) + 20)
+  }
+
+  if (isNaN(...initAvgColor))
+    return [`hsl(211,100%,90%)`, `hsl(211,100%,40%)`, `hsl(211,100%,70%)`, `hsl(211,100%,20%)`, `hsl(211,100%,50%)`, `hsl(211,100%,46%)`, `hsl(211,100%,60%)`];
+
+  return [`hsl(211, 100%, ${initAvgColor[0]}%)`, `hsl(211, 100%, ${initAvgColor[1]}%)`, `hsl(211, 100%, ${initAvgColor[2]}%)`, `hsl(211, 100%, ${initAvgColor[3]}%)`, `hsl(211, 100%, ${initAvgColor[4]}%)`, `hsl(211, 100%, ${initAvgColor[5]}%)`, `hsl(211, 100%, ${initAvgColor[6]}%)`];
+}
 
 export const FloorplanSVG = (props) => {
-  const [c0, setc0] = useState(initc0);
-  const [c1, setc1] = useState(initc1);
-  const [c2, setc2] = useState(initc2);
-  const [c3, setc3] = useState(initc3);
-  const [c4, setc4] = useState(initc4);
-  const [c5, setc5] = useState(initc5);
-  const [c6, setc6] = useState(initc6);
+  var initc = calAvgColor(getAverage(props.startDate, props.endDate));
 
-  // const avgTemp = getAverage(props.startDate, props.endDate);
+  const [c0, setc0] = useState(initc[0]);
+  const [c1, setc1] = useState(initc[1]);
+  const [c2, setc2] = useState(initc[2]);
+  const [c3, setc3] = useState(initc[3]);
+  const [c4, setc4] = useState(initc[4]);
+  const [c5, setc5] = useState(initc[5]);
+  const [c6, setc6] = useState(initc[6]);
+
+  //update the room colour when startDate and endDate changes
+  useEffect(() => {
+    if (!props.roomIsHidden[0])
+      setc0(initc[0]);
+    else
+      setc0(grey);
+
+    if (!props.roomIsHidden[1])
+      setc1(initc[1]);
+    else
+      setc1(grey);
+
+    if (!props.roomIsHidden[2])
+      setc2(initc[2]);
+    else
+      setc2(grey);
+
+    if (!props.roomIsHidden[3])
+      setc3(initc[3]);
+    else
+      setc3(grey);
+
+    if (!props.roomIsHidden[4])
+      setc4(initc[4]);
+    else
+      setc4(grey);
+
+    if (!props.roomIsHidden[5])
+      setc5(initc[5]);
+    else
+      setc5(grey);
+
+    if (!props.roomIsHidden[6])
+      setc6(initc[6]);
+    else
+      setc6(grey);
+  }, [props.startDate, props.endDate]);
 
   const handleChange = (room) => {
     if (room == 0) {
       if (c0 == grey) {
-        setc0(initc0);
+        setc0(initc[0]);
         props.setRoomIsHidden(state => {
           return state.map((item, index) => {
             if (index === 0) {
@@ -32,7 +78,7 @@ export const FloorplanSVG = (props) => {
             } else {
               return item;
             }
-          });  
+          });
         });
       }
       else {
@@ -44,14 +90,13 @@ export const FloorplanSVG = (props) => {
             } else {
               return item;
             }
-          });  
+          });
         });
       }
-      // console.log(avgTemp);
     }
     else if (room == 1) {
       if (c1 == grey) {
-        setc1(initc1);
+        setc1(initc[1]);
         props.setRoomIsHidden(state => {
           return state.map((item, index) => {
             if (index === 1) {
@@ -59,7 +104,7 @@ export const FloorplanSVG = (props) => {
             } else {
               return item;
             }
-          });  
+          });
         });
       }
       else {
@@ -74,11 +119,10 @@ export const FloorplanSVG = (props) => {
           });
         });
       }
-      // console.log(avgTemp[1]);
     }
     else if (room == 2) {
       if (c2 == grey) {
-        setc2(initc2);
+        setc2(initc[2]);
         props.setRoomIsHidden(state => {
           return state.map((item, index) => {
             if (index === 2) {
@@ -86,7 +130,7 @@ export const FloorplanSVG = (props) => {
             } else {
               return item;
             }
-          });  
+          });
         });
       }
       else {
@@ -98,14 +142,13 @@ export const FloorplanSVG = (props) => {
             } else {
               return item;
             }
-          });  
+          });
         });
       }
-      // console.log(avgTemp[2]);
     }
     else if (room == 3) {
       if (c3 == grey) {
-        setc3(initc3);
+        setc3(initc[3]);
         props.setRoomIsHidden(state => {
           return state.map((item, index) => {
             if (index === 3) {
@@ -113,7 +156,7 @@ export const FloorplanSVG = (props) => {
             } else {
               return item;
             }
-          });  
+          });
         });
       }
       else {
@@ -125,14 +168,13 @@ export const FloorplanSVG = (props) => {
             } else {
               return item;
             }
-          });  
+          });
         });
       }
-      // console.log(avgTemp[3]);
     }
     else if (room == 4) {
       if (c4 == grey) {
-        setc4(initc4);
+        setc4(initc[4]);
         props.setRoomIsHidden(state => {
           return state.map((item, index) => {
             if (index === 4) {
@@ -140,7 +182,7 @@ export const FloorplanSVG = (props) => {
             } else {
               return item;
             }
-          });  
+          });
         });
       }
       else {
@@ -152,14 +194,13 @@ export const FloorplanSVG = (props) => {
             } else {
               return item;
             }
-          });  
+          });
         });
       }
-      // console.log(avgTemp[4]);
     }
     else if (room == 5) {
       if (c5 == grey) {
-        setc5(initc5);
+        setc5(initc[5]);
         props.setRoomIsHidden(state => {
           return state.map((item, index) => {
             if (index === 5) {
@@ -167,7 +208,7 @@ export const FloorplanSVG = (props) => {
             } else {
               return item;
             }
-          });  
+          });
         });
       }
       else {
@@ -179,14 +220,13 @@ export const FloorplanSVG = (props) => {
             } else {
               return item;
             }
-          });  
+          });
         });
       }
-      // console.log(avgTemp[5]);
     }
     else if (room == 6) {
       if (c6 == grey) {
-        setc6(initc6);
+        setc6(initc[6]);
         props.setRoomIsHidden(state => {
           return state.map((item, index) => {
             if (index === 6) {
@@ -194,7 +234,7 @@ export const FloorplanSVG = (props) => {
             } else {
               return item;
             }
-          });  
+          });
         });
       }
       else {
@@ -206,10 +246,9 @@ export const FloorplanSVG = (props) => {
             } else {
               return item;
             }
-          });  
+          });
         });
       }
-      // console.log(avgTemp[6]);
     }
     else {
       console.log("error, room number entered not found")
