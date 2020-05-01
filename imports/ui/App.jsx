@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Graph from './Graph';
 import GraphConfig from './GraphConfig'
-import { FloorplanSVG } from './FloorplanSVG';
+import Floorplan from './Floorplan';
 
 import Box from '@material-ui/core/Box';
 
@@ -30,7 +30,7 @@ export const App = () => {
         sampleRate={sampleRate}
         roomIsVisible={roomIsVisible}
       />
-      <FloorplanSVG
+      <Floorplan
         startDate={startDate}
         endDate={endDate}
         roomIsVisible={roomIsVisible}

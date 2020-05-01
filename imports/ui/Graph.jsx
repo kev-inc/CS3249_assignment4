@@ -10,16 +10,9 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
-import orange from '@material-ui/core/colors/orange'
+import Appbar from './Appbar';
 
 const useStyles = makeStyles((theme) => ({
-  appbar: {
-    backgroundColor: orange[700],
-    color: 'black'
-  },
-  title: {
-    flexGrow: 1,
-  },
   graphRef: {
     height: 200
   },
@@ -54,6 +47,7 @@ export const Graph = (props) => {
           axisLabelFormatter: (num) => num.toPrecision(2) + "°C",
         }
       },
+      visibility: props.roomIsVisible,
       interactionModel: {
         dblclick : (event, g, context) => {
           console.log('clicked')
@@ -95,14 +89,7 @@ export const Graph = (props) => {
   return (
     <Box width="100%" mb={2}>
       <Paper>
-        <AppBar position="static" className={classes.appbar}>
-          <Toolbar>
-            <Typography variant="h6" className={classes.title}>
-              Temperature
-                    </Typography>
-          </Toolbar>
-        </AppBar>
-        
+        <Appbar title="Temperature" />
         <Box m={2}>
         <Grid container>
           <Grid item sm={12} md={2}>
