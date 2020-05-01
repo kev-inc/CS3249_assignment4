@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Dygraph from 'dygraphs'
 import { useTracker } from 'meteor/react-meteor-data';
-import { TempCollection, getGraphData } from '../api/links';
+import { getGraphData, getAverage } from '../api/links';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -40,6 +40,7 @@ export const Graph = (props) => {
     }
     return filtered
   })
+  console.log(getAverage(props.startDate, props.endDate))
 
   useEffect(() => {
     new Dygraph(document.getElementById('graphRef'), temps, {

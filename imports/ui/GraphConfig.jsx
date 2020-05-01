@@ -1,5 +1,4 @@
 import React from 'react'
-import { DateInput } from './DateInput';
 import { SampleSlider } from './SampleSlider';
 import { MaterialDateInput } from './MaterialDateInput'
 
