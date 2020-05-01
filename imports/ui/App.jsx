@@ -36,7 +36,6 @@ export const App = () => {
         roomIsHidden={roomIsHidden}
         setRoomIsHidden={setRoomIsHidden}
       />
-    </div>
     </Box>
   )
 }
