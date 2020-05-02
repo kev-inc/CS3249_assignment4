@@ -14,6 +14,7 @@ export const MaterialDateInput = (props) => {
         value={startDate}
         onChange={setStartDate}
         maxDate={endDate}
+        style={{padding:'5px 10px 5px 0'}}
       />
        <DateTimePicker
         label="End"
@@ -21,6 +22,7 @@ export const MaterialDateInput = (props) => {
         value={endDate}
         onChange={setEndDate}
         minDate ={startDate}
+        style={{padding:'5px 10px 5px 0'}}
       />
     </MuiPickersUtilsProvider>
   );

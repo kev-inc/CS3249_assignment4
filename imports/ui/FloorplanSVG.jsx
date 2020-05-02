@@ -256,16 +256,37 @@ export const FloorplanSVG = (props) => {
   };
 
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 519.08 397.83" style={{ width: '50%' }}>
+    <svg id="floorplanSVG" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 519.08 397.83" style={{ width: '50%', padding: '20px' }}>
       <title>FloorplanSVG</title>
       <g id="RoomTemp">
-        <rect x="10.08" y="16" width="196.48" height="142" style={{ fill: c0 }} onClick={(e) => handleChange(0)} />
-        <rect x="10.67" y="261" width="80.54" height="130" style={{ fill: c1 }} onClick={(e) => handleChange(1)} />
-        <rect x="96" y="261" width="82.67" height="130" style={{ fill: c2 }} onClick={(e) => handleChange(2)} />
-        <rect x="184" y="261" width="81.67" height="130" style={{ fill: c3 }} onClick={(e) => handleChange(3)} />
-        <rect x="271.33" y="261" width="81.67" height="130" style={{ fill: c4 }} onClick={(e) => handleChange(4)} />
-        <rect x="357.79" y="261.33" width="80.8" height="130" style={{ fill: c5 }} onClick={(e) => handleChange(5)} />
-        <rect x="441.47" y="261" width="77.62" height="130" style={{ fill: c6 }} onClick={(e) => handleChange(6)} />
+        <g>
+          <rect x="10.08" y="16" width="196.48" height="142" style={{ fill: c0 }} onClick={(e) => handleChange(0)} />
+          <text fontSize="35" x="50" y="150">Room 0</text>
+        </g>
+        <g>
+          <rect x="10.67" y="261" width="80.54" height="130" style={{ fill: c1 }} onClick={(e) => handleChange(1)} />
+          <text fontSize="15" x="27" y="380">Room 1</text>
+        </g>
+        <g>
+          <rect x="96" y="261" width="82.67" height="130" style={{ fill: c2 }} onClick={(e) => handleChange(2)} />
+          <text fontSize="15" x="112" y="380">Room 2</text>
+        </g>
+        <g>
+          <rect x="184" y="261" width="81.67" height="130" style={{ fill: c3 }} onClick={(e) => handleChange(3)} />
+          <text fontSize="15" x="197" y="380">Room 3</text>
+        </g>
+        <g>
+          <rect x="271.33" y="261" width="81.67" height="130" style={{ fill: c4 }} onClick={(e) => handleChange(4)} />
+          <text fontSize="15" x="287" y="380">Room 4</text>
+        </g>
+        <g>
+          <rect x="357.79" y="261.33" width="80.8" height="130" style={{ fill: c5 }} onClick={(e) => handleChange(5)} />
+          <text fontSize="15" x="373" y="380">Room 5</text>
+        </g>
+        <g>
+          <rect x="441.47" y="261" width="77.62" height="130" style={{ fill: c6 }} onClick={(e) => handleChange(6)} />
+          <text fontSize="15" x="452" y="380">Room 6</text>
+        </g>
       </g>
       <g id="Floorplan">
         <polyline points="0 3 220 3 220 73.67 518 73.67" style={{ fill: "none", stroke: "#231f20", strokeMiterlimit: "10", strokeWidth: "6" }} />
