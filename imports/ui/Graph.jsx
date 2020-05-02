@@ -87,7 +87,7 @@ export const Graph = (props) => {
   })
 
   return (
-    <Box width="100%" mb={2}>
+    <Box width="100%">
       <Paper>
         <Appbar title="Temperature" />
         <Box m={2}>
