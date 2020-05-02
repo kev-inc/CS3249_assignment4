@@ -256,7 +256,7 @@ export const FloorplanSVG = (props) => {
   };
 
   return (
-    <svg id="floorplanSVG" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 519.08 397.83" style={{ width: '50%', padding: '20px' }}>
+    <svg id="floorplanSVG" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 519.08 397.83" style={{ width: '100%', padding: '20px' }}>
       <title>FloorplanSVG</title>
       <g id="RoomTemp">
         <g>
