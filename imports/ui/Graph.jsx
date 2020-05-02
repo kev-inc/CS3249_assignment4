@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Dygraph from 'dygraphs'
+import Dygraph from 'dygraphs';
 import { useTracker } from 'meteor/react-meteor-data';
 import { getGraphData, getAverage } from '../api/links';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid'
+import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Appbar from './Appbar';
 
 const useStyles = makeStyles((theme) => ({
   graphRef: {
-    height: 200
+    [theme.breakpoints.down('xs')]: {height:200, width: 400},
+    [theme.breakpoints.up('xs')]: {height: 200}
   },
   graphLabels: {
     display: 'inline-block'

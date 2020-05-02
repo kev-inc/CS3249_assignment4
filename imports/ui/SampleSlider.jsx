@@ -12,7 +12,7 @@ export const SampleSlider = (props) => {
   const { sampleRate, setSampleRate } = props
 
   return (
-    <Box display="flex" height="100%" alignItems='center'>
+    <Box display="flex" height="100%" alignItems='center' p={2}>
       <Slider
         value={sampleRate}
         onChange={handleChange}
