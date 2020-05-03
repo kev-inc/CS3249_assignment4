@@ -1,5 +1,4 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles';
 import { SampleSlider } from './SampleSlider';
 import { MaterialDateInput } from './MaterialDateInput'
 
@@ -16,7 +15,7 @@ const GraphConfig = (props) => {
         <Appbar title="Graph Settings"/>
 
         <Grid container>
-          <Grid item md={6}>
+          <Grid item xs={12} md={6}>
             <Box m={2}>
               <MaterialDateInput
                 startDate={props.startDate}
@@ -25,7 +24,7 @@ const GraphConfig = (props) => {
                 setEndDate={props.setEndDate} />
             </Box>
           </Grid>
-          <Grid item md={6}>
+          <Grid item xs={12} md={6}>
             <SampleSlider
               sampleRate={props.sampleRate}
               setSampleRate={props.setSampleRate} />

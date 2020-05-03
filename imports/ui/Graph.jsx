@@ -14,8 +14,9 @@ import Appbar from './Appbar';
 
 const useStyles = makeStyles((theme) => ({
   graphRef: {
-    [theme.breakpoints.down('xs')]: {height:200, width: 400},
-    [theme.breakpoints.up('xs')]: {height: 200}
+    height: 200
+    // [theme.breakpoints.down('xs')]: {height:200},
+    // [theme.breakpoints.up('xs')]: {height: 200}
   },
   graphLabels: {
     display: 'inline-block'
@@ -23,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const Graph = (props) => {
-  const [isZoom, setIsZoom] = useState(false);
   const classes = useStyles()
   const temps = useTracker(() => {
     const data = getGraphData(props.startDate, props.endDate)
@@ -50,9 +50,6 @@ export const Graph = (props) => {
       },
       visibility: props.roomIsVisible,
       interactionModel: {
-        dblclick : (event, g, context) => {
-          console.log('clicked')
-        },
         mousedown : (event, g, context) => {
           context.initializeMouseDown(event, g, context)
           if(event.button == 1) {
@@ -88,15 +85,15 @@ export const Graph = (props) => {
   })
 
   return (
-    <Box width="100%" mb={2}>
+    <Box width="100%">
       <Paper>
         <Appbar title="Temperature" />
         <Box m={2}>
         <Grid container>
-          <Grid item sm={12} md={2}>
+          <Grid item xs={12} md={2}>
             <div id="graphLabels" align="left"></div>
           </Grid>
-          <Grid item sm={12} md={10}>
+          <Grid item xs={12} md={10}>
             <div id='graphRef' className={classes.graphRef}></div>
           </Grid>
         </Grid>
