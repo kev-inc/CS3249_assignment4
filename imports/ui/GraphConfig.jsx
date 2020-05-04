@@ -1,7 +1,6 @@
 import React from 'react'
 import { SampleSlider } from './SampleSlider';
 import { MaterialDateInput } from './MaterialDateInput'
-
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid'
@@ -12,8 +11,7 @@ const GraphConfig = (props) => {
   return (
     <Box width="100%" mb={2}>
       <Paper>
-        <Appbar title="Graph Settings"/>
-
+        <Appbar title="Graph Settings" />
         <Grid container>
           <Grid item xs={12} md={6}>
             <Box m={2}>

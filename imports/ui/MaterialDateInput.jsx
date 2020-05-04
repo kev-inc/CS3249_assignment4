@@ -4,7 +4,7 @@ import MomentUtils from '@date-io/moment';
 
 export const MaterialDateInput = (props) => {
 
-  const {startDate, setStartDate, endDate, setEndDate} = props
+  const { startDate, setStartDate, endDate, setEndDate } = props
 
   return (
     <MuiPickersUtilsProvider utils={MomentUtils}>
@@ -14,15 +14,15 @@ export const MaterialDateInput = (props) => {
         value={startDate}
         onChange={setStartDate}
         maxDate={endDate}
-        style={{padding:'5px 10px 5px 0'}}
+        style={{ padding: '5px 10px 5px 0' }}
       />
-       <DateTimePicker
+      <DateTimePicker
         label="End"
         inputVariant="outlined"
         value={endDate}
         onChange={setEndDate}
-        minDate ={startDate}
-        style={{padding:'5px 10px 5px 0'}}
+        minDate={startDate}
+        style={{ padding: '5px 10px 5px 0' }}
       />
     </MuiPickersUtilsProvider>
   );

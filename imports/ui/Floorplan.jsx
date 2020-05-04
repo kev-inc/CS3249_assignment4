@@ -1,6 +1,5 @@
 import React from 'react'
 import { FloorplanSVG } from './FloorplanSVG';
-
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import Appbar from './Appbar';

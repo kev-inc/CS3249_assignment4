@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Dygraph from 'dygraphs';
 import { useTracker } from 'meteor/react-meteor-data';
 import { getGraphData, getAverage } from '../api/links';
-
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -15,8 +14,6 @@ import Appbar from './Appbar';
 const useStyles = makeStyles((theme) => ({
   graphRef: {
     height: 200
-    // [theme.breakpoints.down('xs')]: {height:200},
-    // [theme.breakpoints.up('xs')]: {height: 200}
   },
   graphLabels: {
     display: 'inline-block'
@@ -29,7 +26,7 @@ export const Graph = (props) => {
     const data = getGraphData(props.startDate, props.endDate)
     const nth = Math.ceil(data.length / Math.pow(2, props.sampleRate))
     let filtered = []
-    for(var i = 0; i < data.length; i += nth) {
+    for (var i = 0; i < data.length; i += nth) {
       filtered.push(data[i])
     }
     return filtered
@@ -50,26 +47,26 @@ export const Graph = (props) => {
       },
       visibility: props.roomIsVisible,
       interactionModel: {
-        mousedown : (event, g, context) => {
+        mousedown: (event, g, context) => {
           context.initializeMouseDown(event, g, context)
-          if(event.button == 1) {
+          if (event.button == 1) {
             event.preventDefault()
             Dygraph.startZoom(event, g, context)
           } else {
             Dygraph.startPan(event, g, context)
           }
         },
-        mousemove : (event, g, context) => {
-          if(context.isPanning) {
+        mousemove: (event, g, context) => {
+          if (context.isPanning) {
             Dygraph.movePan(event, g, context)
-          } else if(context.isZooming) {
+          } else if (context.isZooming) {
             Dygraph.moveZoom(event, g, context)
           }
         },
-        mouseup : (event, g, context) => {
-          if(context.isPanning) {
+        mouseup: (event, g, context) => {
+          if (context.isPanning) {
             Dygraph.endPan(event, g, context)
-          } else if(context.isZooming) {
+          } else if (context.isZooming) {
             Dygraph.endZoom(event, g, context)
           }
           let axes = g.xAxisRange()
@@ -89,14 +86,14 @@ export const Graph = (props) => {
       <Paper>
         <Appbar title="Temperature" />
         <Box m={2}>
-        <Grid container>
-          <Grid item xs={12} md={2}>
-            <div id="graphLabels" align="left"></div>
+          <Grid container>
+            <Grid item xs={12} md={2}>
+              <div id="graphLabels" align="left"></div>
+            </Grid>
+            <Grid item xs={12} md={10}>
+              <div id='graphRef' className={classes.graphRef}></div>
+            </Grid>
           </Grid>
-          <Grid item xs={12} md={10}>
-            <div id='graphRef' className={classes.graphRef}></div>
-          </Grid>
-        </Grid>
         </Box>
       </Paper>
     </Box>
